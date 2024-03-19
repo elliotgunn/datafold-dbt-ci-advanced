@@ -1,0 +1,11 @@
+version: 2
+
+seeds:
+  - name: customers
+    description: the raw customers data
+    columns:
+      - name: id
+        description: the primary key for the raw customers data
+        tests:
+          - unique
+          - not_null    

@@ -1,0 +1,8 @@
+
+target/
+dbt_packages/
+logs/
+.DS_Store
+dbt-learning/
+.vscode
+.user.yml

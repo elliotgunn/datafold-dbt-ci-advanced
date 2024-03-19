@@ -1,0 +1,40 @@
+name: Pre-commit checks
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  dbt_ci:
+    runs-on: ubuntu-latest
+    env:
+      SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+      SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+      SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+      SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+      SNOWFLAKE_SCHEMA: "${{ format('{0}_{1}', 'PR_NUM', github.event.pull_request.number) }}" 
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3 # Updated to v3
+
+      - name: Set Up Python
+        uses: actions/setup-python@v3 # Updated to v3
+        with:
+          python-version: '3.8'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt
+
+      - name: Install dbt dependencies
+        run: dbt deps
+
+      - name: dbt build
+        run: dbt build --full-refresh --profiles-dir ./
+
+      - name: Run pre-commit checks
+        run: pre-commit run --all-files 
+
+      - name: Lint models
+        run: sqlfluff lint models

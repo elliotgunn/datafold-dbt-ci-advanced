@@ -1,0 +1,5 @@
+dbt-snowflake==1.6.2
+sqlfluff==0.3.6 
+pre-commit==3.5.0
+datafold-sdk==0.0.19
+data-diff==0.11.1

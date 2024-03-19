@@ -1,0 +1,67 @@
+name: dbt deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+
+      - name: Install requirements
+        run: pip install -r requirements.txt  
+
+      - name: Install dbt dependencies
+        run: dbt deps
+
+      # TODO: update for your unique S3 bucket name
+      # TODO: update your GitHub secrets to include AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+      - name: Grab production manifest from S3
+        run: |
+          aws s3 cp s3://advanced-ci-manifest-demo/manifest.json ./manifest.json
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+
+    # TODO: update your GitHub secrets to include SNOWFLAKE_ACCOUNT, SNOWFLAKE_USER, SNOWFLAKE_PASSWORD, SNOWFLAKE_ROLE 
+      - name: dbt build
+        run: dbt build --target prod --select state:modified+ --defer --state ./ --exclude config.materialized:snapshot --full-refresh --profiles-dir ./
+        env:
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+
+      # TODO: comment this step out if you don't have Datafold Cloud yet
+      # TODO: replace --ci-config-id 350 with your unique Datafold CI config id
+      # TODO: update your GitHub secrets to include DATAFOLD_API_KEY
+      - name: Submit artifacts to Datafold
+        run: |
+          set -ex
+          datafold dbt upload --ci-config-id 350 --run-type ${DATAFOLD_RUN_TYPE} --commit-sha ${GIT_SHA}
+        env:
+          DATAFOLD_API_KEY: ${{ secrets.DATAFOLD_API_KEY }}
+          DATAFOLD_RUN_TYPE: "${{ 'production' }}"
+          GIT_SHA:
+            "${{ github.sha }}"
+
+      # TODO: update for your unique S3 bucket name
+      # TODO: update your GitHub secrets to include AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+      - name: Upload manifest to S3
+        run: |
+          aws s3 cp target/manifest.json s3://advanced-ci-manifest-demo/manifest.json
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1

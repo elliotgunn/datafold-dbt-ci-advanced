@@ -1,0 +1,8 @@
+repos:
+  - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
+    rev: v1.2.0  
+    hooks:
+      - id: check-column-desc-are-same
+      - id: check-model-columns-have-desc
+      - id: dbt-compile
+      - id: dbt-test

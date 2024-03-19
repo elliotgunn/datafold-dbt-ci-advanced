@@ -1,0 +1,12 @@
+version: 2
+
+models: 
+  - name: stg_payments
+    description: one unique order per row
+    columns:
+      - name: id
+        description: the primary key for stg_payments
+        tests:
+          - unique
+          - not_null
+        tags: ['primary-key']

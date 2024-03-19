@@ -1,0 +1,19 @@
+version: 2
+
+seeds:
+  - name: orders
+    description: the raw orders data
+    columns:
+      - name: id
+        description: the primary key for the raw orders data
+        tests:
+          - unique              
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
+
+    loaded_at_field: _etl_loaded_at
+    freshness:
+      warn_after: {count: 12, period: hour}
+      error_after: {count: 24, period: hour}

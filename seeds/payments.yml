@@ -1,0 +1,11 @@
+version: 2
+
+seeds:
+  - name: payments
+    description: the raw payments data
+    columns:
+      - name: id
+        description: the primary key for the raw payments data
+        tests:
+          - unique
+          - not_null

@@ -1,0 +1,21 @@
+version: 2
+
+models: 
+  - name: dim_customers
+    description: one unique customer per row
+    columns:
+      - name: customer_id
+        description: the primary key for stg_customers
+        tests:
+          - unique
+          - not_null
+        tags: ['primary-key']
+  - name: fct_orders
+    description: one unique order per row
+    columns:
+      - name: order_id
+        description: the primary key for fct_orders
+        tests:
+          - unique
+          - not_null
+        tags: ['primary-key']
