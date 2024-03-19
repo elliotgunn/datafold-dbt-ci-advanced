@@ -36,7 +36,7 @@ final as (
         customer_orders.lifetime_value,
         case
             when coalesce(customer_orders.number_of_orders, 0) > 5 then 'Loyal'
-            else 'Regular'
+            else 'Regular' 
         end as loyalty_status
     
     from customers
