@@ -9,7 +9,7 @@ jaffle_shop:
       role: "{{ env_var('SNOWFLAKE_ROLE') | as_text }}"
       database: DEV
       warehouse: INTEGRATION
-      schema: ELLIOT
+      schema: "{{ env_var('SNOWFLAKE_SCHEMA') | as_text }}"
       threads: 24
   
     prod:
