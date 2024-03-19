@@ -1,5 +1,5 @@
 # About this project
-This builds on the first demo of creating a simple CI pipeline with GitHub Actions in a toy dbt project. You can access the first demo in [the main branch](https://github.com/elliotgunn/datafold-dbt-ci). 
+This builds on the first demo of creating a simple CI pipeline with GitHub Actions in a toy dbt project. You can access the first demo in the [datafold-dbt-ci]](https://github.com/elliotgunn/datafold-dbt-ci) repository. The two demos are designed to be self-contained; you can run this one without having to run the other first. 
 
 In this second demo, you will incorporate four new integrations into your GitHub Actions workflow for the same project. By the end of this project, you will see a CI pipeline that will, upon a new PR being opened in your dbt project, accomplish four more things:
 1. Build and test models that have been modified in your pull request and are downstream of it (**Slim CI**).
