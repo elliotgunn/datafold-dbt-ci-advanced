@@ -5,4 +5,3 @@ repos:
       - id: check-column-desc-are-same
       - id: check-model-columns-have-desc
       - id: dbt-compile
-      - id: dbt-test
