@@ -39,7 +39,7 @@ final as (
             else 'Regular'
         end as loyalty_status
     
-    from customerss
+    from customers
 
     left join customer_orders using (customer_id)
 
