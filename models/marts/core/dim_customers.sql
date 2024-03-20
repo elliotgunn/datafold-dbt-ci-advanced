@@ -35,11 +35,11 @@ final as (
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders,
         customer_orders.lifetime_value,
         case
-            when coalesce(customer_orders.number_of_orders, 0) > 4 then 'Loyal'
+            when coalesce(customer_orders.number_of_orders, 0) > 3 then 'Loyal'
             else 'Regular'
         end as loyalty_status
     
-    from customers
+    from customerss
 
     left join customer_orders using (customer_id)
 
