@@ -10,7 +10,16 @@ In this second demo, you will incorporate four new integrations into your GitHub
 ## Article and video tutorial
 The article goes into more detail on each step (to be updated).
 
-I also walk through the same tutorial in this 5 minute Loom (to be updated)
+I also walk through the same tutorial in this Loom: 
+
+<div>
+    <a href="https://www.loom.com/share/0cb4c39f2d8d40fd8ebf379c169a653f">
+      <p>Taking your dbt CI pipeline to the next level - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/0cb4c39f2d8d40fd8ebf379c169a653f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/0cb4c39f2d8d40fd8ebf379c169a653f-1710965586626-with-play.gif">
+    </a>
+  </div>
 
 ## What's in this repo?
 It uses [seeds](https://docs.getdbt.com/docs/build/seeds) that includes fake raw data from a fictional app, via dbt lab's [jaffle shop test project](https://github.com/dbt-labs/jaffle_shop). You can also download the data directly [from here](https://github.com/dbt-labs/jaffle_shop/tree/main/seeds).
