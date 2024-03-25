@@ -8,7 +8,7 @@ In this second demo, you will incorporate four new integrations into your GitHub
 4. Send **Slack notifications** to update your team on the CI pipeline's success or failure. 
 
 ## Article and video tutorial
-The article goes into more detail on each step (to be updated).
+[The article goes into more detail](https://www.datafold.com/blog/taking-your-dbt-ci-pipeline-to-the-next-level) on each step.
 
 I also walk through the same tutorial in this Loom: 
 
