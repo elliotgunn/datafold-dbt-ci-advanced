@@ -78,5 +78,5 @@ Learn more about:
 * [dbt](https://docs.getdbt.com/docs/introduction)
 
 ## Acknowledgements
-I built this demo in part based on my colleague Sung's wonderful `vhol-demo` [repository](https://github.com/datafold/vhol-demo). Check it out if you would like to learn more hands-on examples of dbt + Datafold CI/CD workflows. 
+I built this demo in part based on my colleague Sung's wonderful [vhol-demo repository](https://github.com/datafold/vhol-demo). Check it out if you would like to learn more hands-on examples of dbt + Datafold CI/CD workflows. 
 
