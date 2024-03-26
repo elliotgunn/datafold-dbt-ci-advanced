@@ -33,7 +33,7 @@ By the end of the tutorial, you will have run an advanced CI workflow!
 ![](/img/static/github-actions-workflow.png)
 
 ## An example of how CI works
-Imagine you would like to see how changing the threshold for customer loyalty from > 2 to > 4 orders. 
+Imagine you would like to see how changing the threshold for customer loyalty from > 2 to > 4 orders changes the data. 
 
 Here's what a CI workflow should look like. 
 
